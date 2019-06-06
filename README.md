@@ -15,8 +15,7 @@ var results= context.ExecuteSqlMapper<DabirName>("SelectAllLetter", parameters);
   
 // model that passed to ==> context.ExecuteSqlMapper<DabirName>
 public class DabirName 
-{
-  [Key]
+{  
   public long LetterId { set; get; }
   public long AndicatorNo { set; get; }
 }
