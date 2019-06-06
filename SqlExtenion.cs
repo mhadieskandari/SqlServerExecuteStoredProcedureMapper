@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace SqlServerExecuteStoredProcedureMapper
+namespace Microsoft.EntityFrameworkCore.Extensions
 {
-    public class SqlExenion
+    public static class SqlExtenion
     {
-        public static List<TEntity> ExecuteSqlMapper<TEntity>(DbContext dbContext, string StoredProcedureName, List<SqlParameter> sqlParameters = null)
+        public static List<TEntity> ExecuteSqlMapper<TEntity>(this DbContext dbContext, string StoredProcedureName, List<SqlParameter> sqlParameters = null)
         {
             List<TEntity> entities = null;
             using (var command = dbContext.Database.GetDbConnection().CreateCommand())
