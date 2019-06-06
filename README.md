@@ -6,6 +6,7 @@ you can use like this:
 
 
 var parameters = new List<SqlParameter>();
+  
 parameters.Add(new SqlParameter("LetterId", 80));          
 
 using(var context= new ...DBContext())//or use dbcontext as dependency injection
