@@ -38,5 +38,36 @@ namespace Microsoft.EntityFrameworkCore.Extensions
             }
             return entities;
         }
+
+        public static List<TEntity> ExecuteSqlMapper<TEntity>(this DbContext dbContext, string StoredProcedureName, params SqlParameter[] sqlParameters)
+        {
+            List<TEntity> entities = null;
+            using (var command = dbContext.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = StoredProcedureName;
+                command.CommandType = CommandType.StoredProcedure;
+                if (sqlParameters != null && sqlParameters.Length > 0)
+                {
+                    foreach (var param in sqlParameters)
+                        command.Parameters.Add(param);
+                }
+                dbContext.Database.OpenConnection();
+
+                var dataReader = command.ExecuteReader();
+
+                if (dataReader.HasRows)
+                {
+                    Mapper.Reset();
+                    Mapper.Initialize(cfg =>
+                    {
+                        cfg.AddDataReaderMapping();
+                    });
+                    entities = Mapper.Map<IDataReader, List<TEntity>>(dataReader);
+                    dbContext.Database.CloseConnection();
+                }
+            }
+            return entities;
+        }
+
     }
 }
