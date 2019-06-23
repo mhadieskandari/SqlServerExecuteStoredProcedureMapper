@@ -7,7 +7,7 @@
     <PackageTags>efcore,storedprocedure,mapping,reflection,automapper</PackageTags>
     <RepositoryUrl>https://github.com/mhadieskandari/SqlServerExecuteStoredProcedureMapper</RepositoryUrl>
     <PackageProjectUrl>https://github.com/mhadieskandari/SqlServerExecuteStoredProcedureMapper</PackageProjectUrl>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
