@@ -62,16 +62,17 @@ namespace SqlServerExecuteStoredProcedureMapper
 
                 var dataReader = command.ExecuteReader();
                 
-                if (dataReader.HasRows)
-                {
+                //if (dataReader.HasRows)
+                //{
                     Mapper.Reset();
                     Mapper.Initialize(cfg =>
                     {
                         cfg.AddDataReaderMapping();
+                        cfg.CreateMissingTypeMaps = true;
                     });
                     entities = Mapper.Map<IDataReader, List<TEntity>>(dataReader);
                     dbContext.Database.CloseConnection();
-                }
+                //}
             }
             return entities;
         }
